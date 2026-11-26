@@ -6,71 +6,66 @@
   <body>
     <p>Rock Paper Scissors</p>
     <button onclick="
-      let computerChoice = '';
-      const randomNumber = Math.random();
-      if (randomNumber >= 0 && randomNumber < 1/3){
-        computerChoice = 'Rock';
-      } else if (randomNumber >= 1/3 && randomNumber < 2/3){
-        computerChoice = 'Paper';
-      } else if (randomNumber >= 2/3 && randomNumber < 1){
-        computerChoice = 'Scissors';
-      }
-
-      let result = '';
-      if(computerChoice === 'Rock'){
-        result = 'tie';
-      } else if(computerChoice === 'Paper'){
-        result = 'lose';
-      } else if (computerChoice === 'Scissors'){
-        result = 'win';
-      }
-
-      alert(`Computer chose ${computerChoice}. You ${result}!`);
+      playGame('Rock');
     ">Rock</button>
-    <button onclick="
-      let computerChoice1 = '';
-      const randomNumber1 = Math.random();
-      if (randomNumber1 >= 0 && randomNumber1 < 1/3){
-        computerChoice1 = 'Rock';
-      } else if (randomNumber1 >= 1/3 && randomNumber1 < 2/3){
-        computerChoice1 = 'Paper';
-      } else if (randomNumber1 >= 2/3 && randomNumber1 < 1){
-        computerChoice1 = 'Scissors';
-      }
 
-      let result1 = '';
-      if(computerChoice1 === 'Rock'){
-        result1 = 'win';
-      } else if(computerChoice1 === 'Paper'){
-        result1 = 'tie';
-      } else if (computerChoice1 === 'Scissors'){
-        result1 = 'lose';
-      }
-      alert(`Computer chose ${computerChoice1}. You ${result1}!`);
+    <button onclick="
+      playGame('Paper');
       ">Paper</button>
+
     <button onclick="
-      let computerChoice2 = '';
-      const randomNumber2 = Math.random();
-      if (randomNumber2 >= 0 && randomNumber2 < 1/3){
-        computerChoice2 = 'Rock';
-      } else if (randomNumber2 >= 1/3 && randomNumber2 < 2/3){
-        computerChoice2 = 'Paper';
-      } else if (randomNumber2 >= 2/3 && randomNumber2 < 1){
-        computerChoice2 = 'Scissors';
-      }
-
-      let result2 = '';
-      if(computerChoice2 === 'Rock'){
-        result2 = 'lose';
-      } else if(computerChoice2 === 'Paper'){
-        result2 = 'win';
-      } else if (computerChoice2 === 'Scissors'){
-        result2 = 'tie';
-      }
-      alert(`Computer chose ${computerChoice2}. You ${result2}!`);
+      playGame('Scissors');
     ">Scissors</button>
-    <script>
 
+    <script>
+      function playGame(playerMove){
+        let result = '';
+        const computerMove = pickComputerMove();
+
+        if(playerMove === 'Rock'){
+          if (computerMove === 'Rock'){
+            result = 'tie';
+          } else if (computerMove === 'Paper'){
+            result = 'lose';
+          } else if (computerMove === 'Scissors'){
+            result = 'win';
+          }
+        } else if(playerMove === 'Paper'){
+          if (computerMove === 'Paper'){
+            result = 'tie';
+          } else if (computerMove === 'Scissors'){
+            result = 'lose';
+          } else if (computerMove === 'Rock'){
+            result = 'win';
+          }
+        } else if(playerMove === 'Scissors'){
+          if (computerMove === 'Scissors'){
+            result = 'tie';
+          } else if(computerMove === 'Rock'){
+            result = 'lose';
+          } else if (computerMove === 'Paper'){
+            result = 'win';
+          }
+        }
+
+        alert(`You picked ${playerMove}. Computer chose ${computerMove}. You ${result}!`);
+      }
+
+      let computerChoice = '';
+      function pickComputerMove(){
+        
+        const randomNumber = Math.random();
+        
+        if (randomNumber >= 0 && randomNumber < 1/3){
+          computerChoice = 'Rock';
+        } else if (randomNumber >= 1/3 && randomNumber < 2/3){
+          computerChoice = 'Paper';
+        } else if (randomNumber >= 2/3 && randomNumber < 1){
+          computerChoice = 'Scissors';
+        }
+
+        return computerChoice;
+      }
     </script>
   </body>
 </html>
